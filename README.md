@@ -1,12 +1,9 @@
-# LAB - 26
-
+#  RESTy
+### LAB - 26
+Our application will be an API testing tool that can be run in any browser, allowing a user to easily interact with APIs in a familiar interface.
 
 
 ### Author: **Mousa Sabah**
-
-## SandBox (Deployment)
-
-
 
 
 
