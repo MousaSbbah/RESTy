@@ -1,0 +1,26 @@
+form{
+    width: 60%;
+    margin: auto;
+    #urlText{
+        width: 70%;
+        margin: 0 20px ;
+    }
+    .methods{
+        width: 100%;
+
+        input{
+            margin-right: 20px;
+        }
+    }
+}
+
+.history{
+    padding: 35px;
+    width: 60%;
+    margin:50px auto;
+    background: rgb(223, 219, 219);
+    div{
+        display: inline-block;
+        margin: 0 20px;
+    }
+}
