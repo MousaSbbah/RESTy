@@ -2,23 +2,47 @@ form{
     width: 60%;
     margin: auto;
     #urlText{
-        width: 70%;
+        width: 85%;
         margin: 0 20px ;
+    }
+    input[type="submit"]{
+        width: 5%;
+        font-size: 16px;
+       
     }
     .methods{
         width: 100%;
 
-        input{
-            margin-right: 20px;
-        }
+        
+        input[type="radio"] {
+            display: none;
+          }
+          label {
+            display: inline-block;
+            background-color: rgb(238, 247, 255);
+            padding: 4px 11px;
+            font-family: Arial;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 20px;
+          }
+
+          input[type="radio"]:checked+label {
+            background-color: rgb(25, 52, 65);
+            color: white;
+          }
+
+        
     }
+
 }
 
-.history{
-    padding: 35px;
+.request{
+    padding: 10px;
     width: 60%;
-    margin:50px auto;
-    background: rgb(223, 219, 219);
+    margin:auto;
+    background: rgba(157, 158, 219, 0.562);
+    border-radius: 10px;
     div{
         display: inline-block;
         margin: 0 20px;
