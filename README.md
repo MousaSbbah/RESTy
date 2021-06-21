@@ -19,10 +19,12 @@ Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ## Links :
-
-- main pull request : https://github.com/MousaSbbah/RESTy/pull/4
+ 
+- main pull request :
+    -  lab 26 :  https://github.com/MousaSbbah/RESTy/pull/1
+    -  lab 27 :  https://github.com/MousaSbbah/RESTy/pull/4
 - Branch link : https://github.com/MousaSbbah/RESTy/tree/props-and-state
--`gh-pages` Branch : https://github.com/MousaSbbah/RESTy/tree/gh-pages 
+- `gh-pages` Branch : https://github.com/MousaSbbah/RESTy/tree/gh-pages 
 
 
 ## UML Diagram
