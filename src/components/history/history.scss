@@ -1,0 +1,36 @@
+.historyContainer{
+header{
+
+    height: 100px;
+    line-height: 100px;
+    background-color: rgb(2, 83, 79);
+    color: honeydew;
+    h1{
+        margin: auto;
+        text-align: center;
+    }
+
+}
+.record{
+    padding: 10px;
+    margin:auto;
+    background: rgba(46, 179, 196, 0.24);
+  
+    .method {
+        font-weight: 800;
+        color: rgb(99, 11, 31);
+      display: inline-block;
+      margin: 0 20px;
+    }
+    .url{
+      display: inline-block;
+      margin: 0 20px;
+    }
+  }
+
+}
+
+div .record:nth-child(odd){
+    background: rgb(66, 161, 173); 
+}
+
