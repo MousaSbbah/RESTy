@@ -7,24 +7,30 @@ Our application will be an API testing tool that can be run in any browser, allo
 
 ## Deployment 
 
-Github Pages : https://mousasbbah.github.io/RESTy/ 
+https://zealous-noether-25a53c.netlify.app 
 
 ## Available Scripts
 
 In the project directory, you can run:
 
-### `npm start`
+### run the app 
+- git clone `<REPO LINK>`
+- git checkout master
+- npm i
+- #### `npm start`
+ 
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ## Links :
  
-- main pull request :
+- main pull requests :
     -  lab 26 :  https://github.com/MousaSbbah/RESTy/pull/1
     -  lab 27 :  https://github.com/MousaSbbah/RESTy/pull/4
-- Branch link : https://github.com/MousaSbbah/RESTy/tree/props-and-state
-- `gh-pages` Branch : https://github.com/MousaSbbah/RESTy/tree/gh-pages 
+    -  lab 28 :  https://github.com/MousaSbbah/RESTy/pull/7
+- react app Branch link : https://github.com/MousaSbbah/RESTy/tree/master
+- https://zealous-noether-25a53c.netlify.app
 
 
 ## UML Diagram
