@@ -13,7 +13,10 @@ class Result extends React.Component {
               <ReactJson src={this.props.data.data.header} name="Header" />
               <ReactJson src={this.props.data.data.response} name="Response" />
             </If>
-            <Else condition={this.props.data.type === "json"}>
+            <If condition={this.props.data.type === "start"}>
+            <div class="errorMsg"></div>
+            </If>
+            <Else condition={this.props.data.type === "json" || this.props.data.type === "start"}>
             <div class="errorModule">
   <div class="errorIcon">
     <i class="fa fa-unlink"></i>

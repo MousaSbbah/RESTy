@@ -2,6 +2,8 @@ import "./history.scss";
 import React from "react";
 
 class History extends React.Component {
+  selectRecord = (obj) =>{
+  }
   render() {
     return (
       <React.Fragment>
@@ -13,6 +15,7 @@ class History extends React.Component {
               </header>  
               <div>
                   {this.props.children}
+                  
                   </div>      
         </div>
       </React.Fragment>

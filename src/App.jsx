@@ -8,9 +8,10 @@ import History from './components/history/history';
 
 class App extends React.Component {
   constructor(props) {
+    const starter =JSON.parse(localStorage.getItem('history')) || [];
     super(props);
 
-    this.state= {history:[],loading:true,response:{type:'',data:{}}
+    this.state= {click:0,history:starter,loading:true,response:{type:'start',data:{}}
     }
 }
 
@@ -21,11 +22,13 @@ handleForm = (data) =>{
 }
 
 updateHistory = (data) =>{
-
+  localStorage.setItem('history',JSON.stringify(data))
   this.setState({history:data});
 
 }
-
+selectRecord = (idx,obj) =>{
+  this.setState({ click:idx });
+}
 loading = (data)=>{
   this.setState({ loading:data});
   console.log(data)
@@ -44,8 +47,8 @@ handleErrors = (data) =>{
         <main>
         <dev className='left'>
           <History>
-          {this.state.history.map(obj=>{
-            return (<div className='record'>
+          {this.state.history.map((obj,idx)=>{
+            return (<div  key={idx} className='record' onClick={()=>{this.selectRecord(idx,obj)}}>
               <dev className='method'>{obj.method}</dev>
               <dev className='url'>{obj.URL}</dev>
               </div>
@@ -55,7 +58,7 @@ handleErrors = (data) =>{
 
           </dev>
           <dev className='right'>
-          <Form loading={this.loading} handler={this.handleForm} updateHistory={this.updateHistory} errorHandler={this.handleErrors}/>
+          <Form click={this.state.click}  loading={this.loading} handler={this.handleForm} updateHistory={this.updateHistory} errorHandler={this.handleErrors}/>
         <Result loading={this.state.loading} data = {this.state.response}/>
 
           </dev>

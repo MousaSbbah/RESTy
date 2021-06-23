@@ -12,6 +12,11 @@ class Form extends React.Component {
         validBody:false
     }
   }
+  componentDidUpdate(prevProps){
+    if (prevProps.click !== this.props.click) {
+      this.updateAndNotify();
+    }
+  }
   writeJSONCheck = async(e)=>{
     try {
       this.setState({body:JSON.parse(e.target.value)});
@@ -20,14 +25,41 @@ class Form extends React.Component {
       this.setState({validBody:false});
     }
   }
+  handleChange=(e)=>{
+    this.setState({URL:e.value});
+  }
+  async updateAndNotify (){
+    this.props.loading(false);
+
+    const allData = JSON.parse(localStorage.getItem(`history`)) || [];
+    const newData = allData[this.props.click];
+      const raw = await fetch(newData.URL,{
+        method: newData.method,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+          body: (newData.method === 'get')? null : JSON.stringify(newData.body)
+        })
+      let response = await raw.json();
+      let header ={}
+       await raw.headers.forEach((val,key)=>{
+        header[key]=val;
+      });
+      const newHistory = this.state.history;
+      this.setState({ history:newHistory  });
+      this.props.handler({header,response});
+      this.props.loading(true);
+  }
   submitHandler = async (e) => {
     this.props.loading(false);
     e.preventDefault();
-    console.log(e.target);
+    console.log(this.state.newData);
     console.log(e.target.body.value);
     let URL = e.target.urlText.value;
     let method = e.target.method.value;
     this.setState({ URL, method });
+    
+    
     try {
       if (!this.state.validBody && method !=='get') throw new Error ('syntax error :Incorrect JSON input in the body')
       const raw = await fetch(URL,{
@@ -41,14 +73,16 @@ class Form extends React.Component {
           const message = `An error has occurred: ${raw.status}`;
           throw new Error(message);
         }
-      console.log(this.state);
       let response = await raw.json();
       let header ={}
        await raw.headers.forEach((val,key)=>{
         header[key]=val;
       });
-      const newHistory = this.state.history;
+      const newHistory =JSON.parse(localStorage.getItem('history')) || [] ;
+      console.log(newHistory);
       newHistory.push({method,URL,body:this.state.body});
+      console.log(newHistory);
+
       this.setState({ history:newHistory  });
       this.props.handler({header,response});
       this.props.updateHistory(this.state.history);
@@ -57,13 +91,12 @@ class Form extends React.Component {
       this.props.errorHandler(error);
       this.props.loading(true);
     }
-
+    
   };
 
   render() {
     return (
         <React.Fragment>
-
 
       <form action="" onSubmit={this.submitHandler}>
         <label htmlFor="urlText">URL : </label>
