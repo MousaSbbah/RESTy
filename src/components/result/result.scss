@@ -1,5 +1,80 @@
 .resultContainer{
     background-color: white;
-    width: 60%;
-    margin: 50px auto;
 }
+
+
+.loader {
+    width: 10%;
+    margin:60px auto;
+  }
+  
+  .loader-wheel {
+    animation: spin 1s infinite linear;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-left: 4px solid rgb(0, 0, 0);
+    border-radius: 50%;
+    height: 50px;
+    margin-bottom: 10px;
+    width: 50px;
+  }
+  
+  .loader-text {
+    color: rgb(0, 0, 0);
+    font-family: arial, sans-serif;
+  }
+  
+  .loader-text:after {
+    content: 'Loading';
+    animation: load 2s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  @keyframes load {
+    0% {
+      content: 'Loading';
+    }
+    33% {
+      content: 'Loading.';
+    }
+    67% {
+      content: 'Loading..';
+    }
+    100% {
+      content: 'Loading...';
+    }
+  }
+
+
+  
+@mixin scaleTransistion($val){
+    -ms-transform: scale($val);
+    -moz-transform:  scale($val);
+    -webkit-transform:  scale($val);
+    transform:  scale($val);
+  }
+  .errorModule{
+    margin:40px auto 20px;
+    text-align:center;
+    color: #A80000;
+    .errorIcon{
+      font-size:34px;
+      margin: 15px;
+      animation: animateIcon 5s infinite;
+    }
+    .errorMsg{
+      font-size:14px;
+    }
+    @keyframes animateIcon{
+      0% { @include scaleTransistion(1)}
+      50% { @include scaleTransistion(2);  }
+      100% { @include scaleTransistion(1)}
+    }
+  }
