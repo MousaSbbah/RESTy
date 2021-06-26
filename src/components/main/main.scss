@@ -1,0 +1,91 @@
+.home{
+        width: 90vw;
+        margin: auto;
+        
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+        gap: 30px;
+}
+.historyMain{
+    .historyContainer{
+        padding: 10px 60px;
+        width: 50%;
+        margin: auto;
+        header{
+            padding: 0 30px;
+        }
+    
+        div{
+            a{
+                text-decoration: none;
+
+                .record{
+                    background: rgba(46, 179, 196, 0.24);
+                    cursor: pointer;
+                     padding: 10px;
+                     margin:auto;
+                   
+                     .method {
+                         font-weight: 800;
+                         color: rgb(99, 11, 31);
+                       display: inline-block;
+                       margin: 0 20px;
+                     }
+                     .url{
+                       display: inline-block;
+                       margin: 0 20px;
+                       color: black;
+                     }
+                   }
+                 
+                 }
+                 
+
+            }
+            div a:nth-child(odd){
+                .record{
+                    background: rgba(146, 208, 216, 0.24);
+                }
+        }
+  
+    }
+
+    
+
+}
+
+
+.recordDetails{
+    padding: 10px 60px;
+    width: 50%;
+    margin: auto; 
+    background-color: gainsboro;
+    border-radius: 30px;
+    a{
+        display: block;
+        text-decoration: none;
+        background-color: black;
+        color: wheat;
+        border-radius: 5px;
+        padding: 5px;
+        height: 40px;
+        line-height: 40px;
+        width: 20%;
+        text-align: center;
+        font-weight: bold;
+
+    }
+}
+
+.help{
+    width: 80%;
+    margin: auto;
+    background-color: rgba(211, 211, 235, 0.685);
+    padding: 10px 50px;
+    h2{
+        padding:10px;
+        width: 100%;
+        text-align: center;
+        background-color: rgb(188, 188, 219);
+    }
+}

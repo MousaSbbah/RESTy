@@ -4,8 +4,31 @@ header{
     background-color: rgb(41, 39, 39);
     color: honeydew;
     h1{
-        margin: auto;
+        display: inline-block;
+        margin: auto 30px;
         text-align: center;
+        font-size: 36px;
+
+    }
+    ul{
+        float: right;
+        margin: 0;
+        li{
+            margin: auto;
+            text-align: center;
+            display: inline-block;
+            margin: auto 60px;
+            a{
+                height: 100px;
+
+                text-decoration: none;
+                font-size: 30px;
+                font-weight:600;
+                line-height: 100px;
+                background-color: rgb(41, 39, 39);
+                color: rgb(209, 228, 231);
+            }
+        }
     }
 }
 

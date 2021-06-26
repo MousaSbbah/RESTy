@@ -5,12 +5,22 @@ class Form extends React.Component {
   constructor(props) {
     super(props);
     this.state={
-        method:'',
+        method:'get',
         URL:'',
         body:{},
         history:[],
-        validBody:false
+        validBody:true,
+
     }
+  }
+  onMethodChange=(e)=> {
+    this.setState({method: e.target.value});
+  }
+  componentDidMount(){
+    if(this.props.click){
+      this.updateAndNotify();
+      this.rerun(this.props.click)
+    } 
   }
   componentDidUpdate(prevProps){
     if (prevProps.click !== this.props.click) {
@@ -18,8 +28,10 @@ class Form extends React.Component {
     }
   }
   writeJSONCheck = async(e)=>{
+    
     try {
-      this.setState({body:JSON.parse(e.target.value)});
+      this.setState({body: JSON.parse(e.target.value)});
+      
       this.setState({validBody:true});
     } catch (error) {
       this.setState({validBody:false});
@@ -29,10 +41,17 @@ class Form extends React.Component {
     this.setState({URL:e.value});
   }
   async updateAndNotify (){
-    this.props.loading(false);
-
+    console.log('yes')
     const allData = JSON.parse(localStorage.getItem(`history`)) || [];
     const newData = allData[this.props.click];
+    this.setState({URL:newData.URL,method:newData.method,body:newData.body});
+    document.getElementById('body').value=JSON.stringify(newData.body);
+  }
+
+   rerun = async(idx)=>{
+    this.props.loading(false);
+    const allData = JSON.parse(localStorage.getItem(`history`)) || [];
+    const newData = allData[idx];
       const raw = await fetch(newData.URL,{
         method: newData.method,
         headers: {
@@ -50,20 +69,23 @@ class Form extends React.Component {
       this.props.handler({header,response});
       this.props.loading(true);
   }
+
   submitHandler = async (e) => {
     this.props.loading(false);
     e.preventDefault();
     console.log(this.state.newData);
     console.log(e.target.body.value);
     let URL = e.target.urlText.value;
-    let method = e.target.method.value;
-    this.setState({ URL, method });
+    let method = this.state.method;  
+    this.setState({ URL });
     
     
     try {
       if (!this.state.validBody && method !=='get') throw new Error ('syntax error :Incorrect JSON input in the body')
       const raw = await fetch(URL,{
-        method: method,
+        method: this.state.method,
+        // mode: 'no-cors',
+        
         headers: {
           'Content-Type': 'application/json',
         },
@@ -100,16 +122,16 @@ class Form extends React.Component {
 
       <form action="" onSubmit={this.submitHandler}>
         <label htmlFor="urlText">URL : </label>
-        <input type="text" name="urlText" id="urlText" required />
+        <input type="text" onChange={this.handleChange} name="urlText" id="urlText" value={this.state.URL} required />
         <input type="submit" value="Go !" />
         <div className="methods">
-          <input type="radio" name="method" id="get" value="get" defaultChecked/>
+          <input type="radio" name="method" id="get" value="get" checked={this.state.method === 'get'}  onChange={this.onMethodChange}/>
           <label htmlFor="get"> GET </label>
-          <input type="radio" name="method" id="post" value="post" />
+          <input type="radio" name="method" id="post" value="post" checked={this.state.method === 'post'} onChange={this.onMethodChange}/>
           <label htmlFor="post">POST </label>
-          <input type="radio" name="method" id="delete" value="delete" />
+          <input type="radio" name="method" id="delete" value="delete" checked={this.state.method === 'delete'} onChange={this.onMethodChange}/>
           <label htmlFor="delete">DELETE</label>
-          <input type="radio" name="method" id="put" value="put" />
+          <input type="radio" name="method" id="put" value="put" checked={this.state.method === 'put'} onChange={this.onMethodChange}/>
           <label htmlFor="put">PUT </label>
         </div>
         <label htmlFor="body">BODY ( json )</label>
@@ -121,7 +143,7 @@ class Form extends React.Component {
               incorrect JSON
             </Else>
             
-        <textarea  id="body" name="body" onChange={this.writeJSONCheck}></textarea>
+        <textarea  id="body" name="body" onChange={this.writeJSONCheck} ></textarea>
       </form>
 
       <div className="request">
