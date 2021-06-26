@@ -1,11 +1,9 @@
 import "./history.scss";
 import React from "react";
-
 class History extends React.Component {
-  selectRecord = (obj) =>{
-  }
+
   render() {
-    return (
+        return (
       <React.Fragment>
         <div className="historyContainer">
           <header>
